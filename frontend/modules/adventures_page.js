@@ -3,6 +3,9 @@ import config from "../conf/index.js";
 
 //Implementation to extract city from query params
 function getCityFromURL(search) {
+  const urlParams = new URLSearchParams(search);
+  const city = urlParams.get("city");
+  return city;
   // TODO: MODULE_ADVENTURES
   // 1. Extract the city id from the URL's Query Param and return it
 
@@ -10,6 +13,15 @@ function getCityFromURL(search) {
 
 //Implementation of fetch call with a paramterized input based on city
 async function fetchAdventures(city) {
+  try {
+    const result = await fetch(
+      config.backendEndpoint + `/adventures?city=${city}`
+    );
+    const data = await result.json();
+    return data;
+  }catch (e){
+    return null;
+  }
   // TODO: MODULE_ADVENTURES
   // 1. Fetch adventures using the Backend API and return the data
 
@@ -17,6 +29,29 @@ async function fetchAdventures(city) {
 
 //Implementation of DOM manipulation to add adventures for the given city from list of adventures
 function addAdventureToDOM(adventures) {
+  adventures.forEach(({id, category, image, name, costPerHead, duration }) => {
+    let ele = document.createElement("div");
+    ele.className = "col-12 col-sm-6 col-lg-3 mb-4";
+    ele.innerHTML = `
+                <a href = "detail/?adventure=${id}" id=${id}>
+                  <div class="activity-card">
+                    <div class="category-banner">${category}</div>
+                    <img class="img-responsive" src=${image}/>
+                      
+                        <div class = "d-block d-md-flex text-center justify-content-between p-2 w-100">
+                          <h6>${name}</h6>
+                          <h6>Rs.${costPerHead}</h6>
+                        </div>
+                          <div class = "d-block d-md-flex text-center justify-content-between p-2 w-100">
+                            <h6>Duration</h6>
+                            <h6>Rs.${duration} Hours</h6>
+                          </div>
+                      
+                  </div>
+                </a>
+              `;
+      document.getElementById("data").appendChild(ele);
+  });
   // TODO: MODULE_ADVENTURES
   // 1. Populate the Adventure Cards and insert those details into the DOM
 
