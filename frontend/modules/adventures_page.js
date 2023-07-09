@@ -62,7 +62,7 @@ function filterByDuration(list, low, high) {
   // TODO: MODULE_FILTERS
   // 1. Filter adventures based on Duration and return filtered list
   const filteredList=list.filter((key)=>
-  key.duration >low && key.duration <=high);
+  key.duration > low && key.duration <= high);
   return filteredList;
 
 }
@@ -84,7 +84,11 @@ function filterByCategory(list, categoryList) {
 // 2. Filter by category only
 // 3. Filter by duration and category together
 
-function filterFunction(list, filters) {
+
+
+
+
+
   // TODO: MODULE_FILTERS
   // 1. Handle the 3 cases detailed in the comments above and return the filtered list of adventures
   // 2. Depending on which filters are needed, invoke the filterByDuration() and/or filterByCategory() methods
@@ -92,24 +96,26 @@ function filterFunction(list, filters) {
 
   // Place holder for functionality to work in the Stubs
 
+function filterFunction(list, filters) {
+
   let filteredList=[];
+  let choice=filters["duration"].split("-");
   if(filters["duration"].length>0 && filters["category"].length>0){
     filteredList=filterByDuration(
       list,
       parseInt(choice[0]),
       parseInt(choice[1])
-
     );
     filteredList=filterByCategory(filteredList,filters["category"]);
   }
 
   else if(filters["duration"].length>0){
-    let choice=filters["duration"].split("-");
+
+    console.log(choice)
     filteredList=filterByDuration(
       list,
       parseInt(choice[0]),
       parseInt(choice[1])
-
     );
   }
   else if(filters["category"].length>0){
