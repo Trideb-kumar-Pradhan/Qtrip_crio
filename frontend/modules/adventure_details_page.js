@@ -38,7 +38,7 @@ function addAdventureDetailsToDOM(adventure) {
 
   adventure.images.map((image) => {
     let ele = document.createElement("div");
-    ele.className = "col-lg-12";
+    ele.className = "activity-card-image";
     ele.innerHTML = `
     <img 
       src=${image} 
@@ -87,7 +87,7 @@ images.map((image, idx) => {
   carouseItemElement.className = `carousel-item ${idx === 0 ? "active" : ""}`;
   carouseItemElement.innerHTML = `
   <img 
-      src =${image} alt="..." srcset = "" 
+      src =${image} alt="Image ${idx+1}"
       class="activity-card-image w-100 h-95 pb-3 pb-md-0" style="object-fit:cover"
       />
   `;
