@@ -85,18 +85,7 @@ function filterByCategory(list, categoryList) {
 // 3. Filter by duration and category together
 
 
-
-
-
-
-  // TODO: MODULE_FILTERS
-  // 1. Handle the 3 cases detailed in the comments above and return the filtered list of adventures
-  // 2. Depending on which filters are needed, invoke the filterByDuration() and/or filterByCategory() methods
-
-
-  // Place holder for functionality to work in the Stubs
-
-function filterFunction(list, filters) {
+function filterFunction(list, filters) { 
 
   let filteredList=[];
   let choice=filters["duration"].split("-");
